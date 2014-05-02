@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails rails4-bootstrap-devise-cancan-omniauth: development" uuid="7c3f6753-8c2e-4031-80d6-9f4f31d73a90">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails rails4-bootstrap-devise-cancan-omniauth: test" uuid="be4a8f51-8c3f-4e13-875e-c5bb1724ade7">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails rails4-bootstrap-devise-cancan-omniauth: cucumber" uuid="d038c842-c3a7-4977-ba4d-3c76b1aae65e">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

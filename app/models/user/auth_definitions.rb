@@ -9,6 +9,12 @@ module User::AuthDefinitions
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
+
+    # new function to determine whether a password has been set
+    def has_no_password?
+      self.encrypted_password.blank? || self.uid && self.provider
+    end
+
     # Password not required when using omniauth
     def password_required?
       super && identities.empty?
@@ -26,6 +32,19 @@ module User::AuthDefinitions
         super
       end
     end
+
+
+
+    # def self.new_with_session(params, session)
+    #   if session["devise.user_attributes"]
+    #     new(session["devise.user_attributes"], without_protection: true) do |user|
+    #       user.attributes = params
+    #       user.valid?
+    #     end
+    #   else
+    #     super
+    #   end
+    # end
 
   end
 end

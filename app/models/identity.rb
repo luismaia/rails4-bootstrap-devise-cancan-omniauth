@@ -1,6 +1,6 @@
 class Identity < ActiveRecord::Base
 
-  belongs_to :user, :foreign_key => "uid"
+  belongs_to :user, :foreign_key => "user_id"
 
   def self.from_omniauth(auth)
     identity = where(auth.slice(:provider, :uid)).first_or_create do |identity|
@@ -34,11 +34,15 @@ class Identity < ActiveRecord::Base
       self.user = current_user
       Rails.logger.info "This is user with updating identity #{self.user} PT2 #{self.inspect} PT3 #{self.user.inspect}"
       self.user.email       ||= self.email
-      self.user.image       ||= self.image
+      #self.user.image       ||= self.image
       self.user.first_name  ||= self.first_name
       self.user.last_name   ||= self.last_name
+      self.user.uid         ||= self.uid
+      self.user.provider    ||= self.provider
+      self.user.role = [AppConfig.default_role]
       self.user.skip_reconfirmation!
       self.user.save!
+      self.user_id ||= self.user.id
       self.save!
       return self.user
     elsif self.user.present?
@@ -53,9 +57,12 @@ class Identity < ActiveRecord::Base
         #image: self.image,
         first_name: self.first_name,
         last_name: self.last_name,
+        uid: self.uid,
+        provider: self.provider,
         roles: [AppConfig.default_role]
       )
       self.user.save!(validate: false)
+      self.user_id ||= self.user.id
       self.save!
       return self.user
     end

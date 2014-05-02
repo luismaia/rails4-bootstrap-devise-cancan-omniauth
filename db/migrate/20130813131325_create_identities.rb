@@ -12,6 +12,8 @@ class CreateIdentities < ActiveRecord::Migration
       t.string :nickname
       t.string :first_name
       t.string :last_name
+
+      t.references :user
     end
   end
 end

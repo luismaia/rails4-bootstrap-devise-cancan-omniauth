@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20130819144341) do
     t.string   "nickname"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -43,13 +44,16 @@ ActiveRecord::Schema.define(version: 20130819144341) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "roles_mask"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

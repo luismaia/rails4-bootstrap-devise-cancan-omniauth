@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "abc@gmail.com"
+  config.mailer_sender = "maial@desy.de"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -220,6 +220,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  #config.omniauth :facebook, '438031743001028', 'a1bf79f70fe85f156284c75b86844ad9', :strategy_class => OmniAuth::Strategies::Facebook #, scope: 'email,user_birthday,read_stream'
+  #config.omniauth :facebook, '438031743001028', 'a1bf79f70fe85f156284c75b86844ad9', :strategy_class => OmniAuth::Strategies::Facebook
+  config.omniauth :facebook, '438031743001028', 'a1bf79f70fe85f156284c75b86844ad9', {:scope => 'publish_stream,email', :client_options => {:ssl => {:ca_path => '/Users/luismaia/development/railsProjects/web_services/xauth/trunk/site'}}}
+  config.omniauth :twitter, 'gvwf4XEigKpI4dDZzQyA', 'cBJEiVamsfnhBWjVyC3Voduw5RH4NXxCcbnMuFYVRek', scope: 'email,user_birthday,read_stream'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -243,6 +247,5 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
-  config.omniauth :facebook, 'APP_ID', 'APP_SECRET_ID', scope: 'email,user_birthday,read_stream'
 
 end

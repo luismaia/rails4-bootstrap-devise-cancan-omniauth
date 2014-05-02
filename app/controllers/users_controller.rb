@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  respond_to :html #, :json
 
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
