@@ -97,6 +97,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.15)
+    nested_form (0.3.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -221,6 +222,7 @@ DEPENDENCIES
   jquery-rails
   mail
   mysql2
+  nested_form
   omniauth-facebook
   omniauth-kerberos
   omniauth-twitter

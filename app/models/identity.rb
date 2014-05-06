@@ -2,6 +2,7 @@ class Identity < ActiveRecord::Base
 
   belongs_to :user, :foreign_key => "user_id"
 
+  
   def self.from_omniauth(auth)
     identity = where(auth.slice(:provider, :uid)).first_or_create do |identity|
       identity.provider     = auth.provider
@@ -39,9 +40,12 @@ class Identity < ActiveRecord::Base
       self.user.last_name   ||= self.last_name
       self.user.uid         ||= self.uid
       self.user.provider    ||= self.provider
-      self.user.role = [AppConfig.default_role]
+
+      self.user.genders = [AppConfig.default_gender]
+      self.user.set_def_role
+
       self.user.skip_reconfirmation!
-      self.user.save!
+      self.user.save!(validate: false)
       self.user_id ||= self.user.id
       self.save!
       return self.user
@@ -59,8 +63,9 @@ class Identity < ActiveRecord::Base
         last_name: self.last_name,
         uid: self.uid,
         provider: self.provider,
-        roles: [AppConfig.default_role]
+        genders: [AppConfig.default_gender]
       )
+      self.user.set_def_role
       self.user.save!(validate: false)
       self.user_id ||= self.user.id
       self.save!
@@ -68,7 +73,7 @@ class Identity < ActiveRecord::Base
     end
   end
 
-  def create_user
 
+  def create_user
   end
 end

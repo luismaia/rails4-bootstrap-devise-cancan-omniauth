@@ -7,12 +7,13 @@ module User::AuthDefinitions
     # :token_authenticatable, :confirmable,
     # :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
-           :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+           :recoverable, :rememberable, :trackable, :validatable,
+           :confirmable, :lockable, :omniauthable
 
 
     # new function to determine whether a password has been set
     def has_no_password?
-      self.encrypted_password.blank? || self.uid && self.provider
+      self.encrypted_password.blank? || (self.uid && self.provider)
     end
 
     # Password not required when using omniauth

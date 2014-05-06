@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  def after_save(new_registry_path, registry)
+    if params[:redirection] == t("model.buttons.saveAndAddAnother") && !new_registry_path.nil?
+      redirect_to new_registry_path
+    else
+      respond_with(registry)
+    end
+  end
+
   private
 
   def check_registration

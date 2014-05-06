@@ -1,0 +1,11 @@
+<%= simple_nested_form_for @user, :validate => true, :html => {:class => 'form-horizontal'} do |f| %>
+
+    <%= render "shared/error_messages", :target => @user %>
+
+    <%= render 'users/form_shared_inputs', f: f, user: @user %>
+
+    <%= render 'shared/inputs/form_input_field_role_ids', f: f, user: @user %>
+
+    <%= render "shared/buttons/form_page_buttons", cancel_path: users_path, back_path: @user, f: f %>
+
+<% end %>

@@ -1,11 +1,12 @@
 <div id="role-options-<%= user.id %>" class="modal" style="display: none;">
-  <%= simple_form_for user, :url => user_path(user), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+  <%= simple_nested_form_for user, :validate => true, :url => user_path(user), :html => {:method => :put, :class => 'form-horizontal'} do |f| %>
       <div class="modal-header">
         <a class="close" data-dismiss="modal">&#215;</a>
+
         <h3>Change Role</h3>
       </div>
       <div class="modal-body">
-        <%= f.input :roles, :collection => AppConfig.roles, :as => :check_boxes, :label_method => lambda {|r| r.titleize}, :label => false, :item_wrapper_class => 'inline', checked: user.roles %>
+        <%= render 'shared/inputs/form_input_field_role_ids', f: f, user: user %>
       </div>
       <div class="modal-footer">
         <%= f.submit "Change Role", :class => "btn" %>

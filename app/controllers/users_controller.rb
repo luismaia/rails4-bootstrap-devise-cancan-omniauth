@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  load_and_authorize_resource
   respond_to :html #, :json
 
   def index
@@ -9,47 +11,46 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    respond_with(@user)
   end
 
   def new
-    @user = User.new
+    #@user = User.new
+    #respond_with(@user)
   end
 
   def edit
+    #@user = User.find(params[:id])
   end
 
   def create
     authorize! :create, @user, :message => 'Not authorized as an administrator.'
 
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-      else
-        format.html { render action: 'new' }
-      end
+
+    if @user.save
+      flash[:notice] = 'User was successfully created.'
     end
+    after_save(nil, @user)
   end
 
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
-    respond_to do |format|
 
-      if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-      else
-        format.html { render action: 'edit' }
-      end
+    if @user.update_attributes(user_params)
+      flash[:notice] = 'User was successfully updated.'
     end
+    after_save(nil, @user)
   end
 
   def destroy
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
 
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-    end
+
+    flash[:notice] = 'User was successfully destroyed.'
+    respond_with(@user)
   end
 
   private
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :roles => [])
+    params.require(:user).permit(:email, :first_name, :last_name, :provider, :role_ids => [], :genders => [])
   end
 
 end

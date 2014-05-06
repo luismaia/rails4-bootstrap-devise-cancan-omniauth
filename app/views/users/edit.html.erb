@@ -1,0 +1,15 @@
+<%-
+    model_class = User
+    pageContext = 'edit'
+    pageTitle = '.title'
+    pageModel = t('model.user')
+-%>
+
+<%= render "shared/page_title",
+           :pageContext => pageContext,
+           :pageTitle => pageTitle,
+           :pageModel => pageModel,
+           :defaultModel => model_class.model_name.human
+%>
+
+<%= render :partial => 'form' %>

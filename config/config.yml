@@ -4,6 +4,11 @@ defaults: &defaults
     - owner
     - user
   default_role: user
+  genders:
+    - Feminine
+    - Masculine
+    - Undefined
+  default_gender: Undefined
 
 development:
   <<: *defaults

@@ -1,0 +1,12 @@
+<% if can? :read, Role %>
+    <%= f.input :role_ids, label: t('model.userRole'),
+                :collection => Role.all, #.order('name'),
+                #:label => false,
+                :value_method => :id,
+                :label_method => :name,
+                :checked => user.get_user_roles_id,
+                :as => :check_boxes, #:radio_buttons,
+                :item_wrapper_class => 'inline',
+                :include_blank => false
+    %>
+<% end %>

@@ -59,6 +59,7 @@ gem 'omniauth-kerberos'
 
 
 gem "simple_form", github: "plataformatec/simple_form"
+gem "nested_form"
 gem "hashugar", github: "alex-klepa/hashugar"
 
 #Twitter Bootstrap

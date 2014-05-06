@@ -1,4 +1,5 @@
 <h3>User</h3>
 <p>User: <%= @user.full_name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
-<p>Roles: <%= @user.roles.join(', ') if @user.roles %></p>
+<p>Gender: <%= @user.genders.join(', ') if @user.genders %></p>
+<p>Roles: <%= @user.get_user_roles_name if @user.roles %></p>

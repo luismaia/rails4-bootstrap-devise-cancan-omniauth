@@ -1,0 +1,26 @@
+<div class="page-header">
+
+  <% if pageContext == "edit" %>
+      <% correctModel = (pageModel == "") ? defaultModel : pageModel %>
+      <h1><%= t(pageTitle, :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => correctModel).titleize %></h1>
+
+  <% elsif pageContext == "new" %>
+      <% correctModel = (pageModel == "") ? defaultModel : pageModel %>
+      <h1><%= t(pageTitle, :default => [:'helpers.titles.new', 'New %{model}'], :model => correctModel).titleize %></h1>
+
+  <% elsif pageContext == "copy" %>
+      <% correctModel = (pageModel == "") ? defaultModel : pageModel %>
+      <h1><%= t(pageTitle, :default => [:'helpers.titles.copy', 'Copy %{model}'], :model => correctModel).titleize %></h1>
+
+  <% elsif pageContext == "show" %>
+      <h1><%= t(pageTitle, :default => model_class.model_name.human).titleize %></h1>
+
+  <% elsif pageContext == "index" %>
+      <h1><%= t(pageTitle, :default => model_class.model_name.human).pluralize.titleize %></h1>
+
+  <% elsif pageContext == "history" %>
+      <h1><%= t(pageTitle, :default => model_class.model_name.human).pluralize.titleize %></h1>
+
+  <% end %>
+
+</div>
