@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   include User::AuthDefinitions
   include User::Genders
 
-  has_many :identities
+  has_one :identity
 
   has_and_belongs_to_many :roles, join_table: :users_roles
   accepts_nested_attributes_for :roles, allow_destroy: false

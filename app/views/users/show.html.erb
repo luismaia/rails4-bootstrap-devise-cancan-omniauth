@@ -3,3 +3,10 @@
 <p>Email: <%= @user.email if @user.email %></p>
 <p>Gender: <%= @user.genders.join(', ') if @user.genders %></p>
 <p>Roles: <%= @user.get_user_roles_name if @user.roles %></p>
+
+<% unless @user.identity.nil? %>
+    <h4>Identity</h4>
+    <p>Provider: <%= @user.identity.provider %></p>
+    <p>Email: <%= @user.identity.email %></p>
+    <p>Image: </p><%= image_tag @user.identity.image %>
+<% end %>

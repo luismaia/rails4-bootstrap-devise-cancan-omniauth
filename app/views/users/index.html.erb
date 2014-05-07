@@ -4,9 +4,14 @@
     <thead>
     <tr>
       <th>Username</th>
-      <th>Email</th>
+      <th>
+        Email
+        <br/>
+        Provider
+      </th>
       <th>Registered</th>
       <th>Role</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -15,14 +20,24 @@
     <% @users.each do |user| %>
         <tr>
           <td><%= link_to user.full_name, user %></td>
-          <td><%= user.email %></td>
+          <td>
+            <%= user.email %>
+            <br/>
+            <%= user.provider %>
+          </td>
           <td><%= user.created_at.to_date %></td>
           <td><%= user.get_user_roles_name %></td>
           <td>
-            <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini btn-primary" type="button">Change role</a>
+            <% if can? :edit, User %>
+                <%= link_to("Edit user", edit_user_path(user), class: 'btn btn-mini btn-primary') %>
+            <% end %>
+          </td>
+          <td>
+            <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini btn-primary" type="button">Change
+              role</a>
             <%= render user %>
           </td>
-          <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
+          <td><%= link_to("Delete user", user_path(user), data: {confirm: "Are you sure?"}, method: :delete, class: 'btn btn-mini btn-danger') unless user == current_user %></td>
         </tr>
     <% end %>
     </tbody>
