@@ -7,20 +7,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = identity.user if identity
 
     if user.nil?
-
-      # user_email = omniauth['info']['email']
-      # unless user_email.nil?
-      #   user = User.find_by_email(user_email)
-      #   unless user.nil?
-      #     #flash[:error] = 'Your email already exists in the system.'
-      #   end
-      # end
-
       identity = Identity.from_omniauth(omniauth)
 
       if identity.email.nil? || identity.first_name.nil? || identity.last_name.nil?
         session[:omniauth] = omniauth.except('extra')
-        #session["devise.user_attributes"] = user.attributes
         redirect_to new_user_registration_url
       else
         current_user = User.find_by_email_and_provider(identity.email, identity.provider)
@@ -42,6 +32,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   alias_method :facebook, :all
   alias_method :twitter, :all
+  alias_method :google_oauth2, :all
 
   protected
 
