@@ -27,15 +27,15 @@ class User < ActiveRecord::Base
   end
 
   # GENDER
-  def set_gender(gender_name)
-    self.genders = get_gender(gender_name)
+  def set_gender(gender_a)
+    self.genders = get_gender(gender_a)
   end
 
-  def get_gender(gender_name)
-    if gender_name.blank?
+  def get_gender(gender_a)
+    if gender_a.blank?
       gender = [AppConfig.default_gender]
     else
-      gender = gender_name.to_a
+      gender = gender_a
     end
     gender
   end

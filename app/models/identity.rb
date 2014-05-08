@@ -3,24 +3,33 @@ class Identity < ActiveRecord::Base
   belongs_to :user, :foreign_key => "user_id"
 
 
-  def self.from_omniauth(auth)
-    identity = where(auth.slice(:provider, :uid)).first_or_create do |identity|
-      identity.provider = auth.provider
-      identity.uid = auth.uid
-      identity.token = auth.credentials.token
-      identity.secret = auth.credentials.secret if auth.credentials.secret
-      identity.expires_at = auth.credentials.expires_at if auth.credentials.expires_at
-      identity.email = auth.info.email if auth.info.email
-      identity.image = auth.info.image if auth.info.image
+  def self.from_omniauth(omniauth)
+    identity = where(omniauth.slice(:provider, :uid)).first_or_create do |identity|
+      identity.provider = omniauth.provider
+      identity.uid = omniauth.uid
 
-      identity.nickname = auth.info.nickname
-      identity.nickname = auth.info.username if identity.nickname.blank?
+      if omniauth.info
+        identity.email = omniauth.info.email if omniauth.info.email
+        identity.name = omniauth.info.name if omniauth.info.name
+        identity.first_name = omniauth.info.first_name if omniauth.info.first_name
+        identity.last_name = omniauth.info.last_name if omniauth.info.last_name
 
-      identity.name = auth.info.name if auth.info.name
-      identity.first_name = auth.info.first_name
-      identity.last_name = auth.info.last_name
-      identity.gender = auth.extra.raw_info.gender
-      identity.birthday = DateTime.strptime(auth.extra.raw_info.birthday, "%m/%d/%Y")
+        identity.nickname = omniauth.info.nickname if omniauth.info.nickname
+        identity.nickname ||= omniauth.info.username if omniauth.info.username
+
+        identity.token = omniauth.credentials.token
+        identity.secret = omniauth.credentials.secret if omniauth.credentials.secret
+        identity.expires_at = omniauth.credentials.expires_at if omniauth.credentials.expires_at
+        identity.image = omniauth.info.image if omniauth.info.image
+      end
+
+      if omniauth.extra
+        if omniauth.extra.raw_info
+          identity.gender = omniauth.extra.raw_info.gender if omniauth.extra.raw_info.gender
+          identity.birthday = DateTime.strptime(omniauth.extra.raw_info.birthday, "%m/%d/%Y") if omniauth.extra.raw_info.birthday
+        end
+      end
+
     end
     identity.save!
 
@@ -49,7 +58,7 @@ class Identity < ActiveRecord::Base
       self.user.provider    ||= self.provider
       self.user.birthday    ||= self.birthday
 
-      self.user.set_gender(self.gender)
+      self.user.set_gender(self.user.genders)
       self.user.set_def_role #Default role association
 
       self.user.skip_confirmation!

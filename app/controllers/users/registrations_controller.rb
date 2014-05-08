@@ -2,6 +2,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   respond_to :html, :json
 
+  # def new
+  #   session[:omniauth] = nil
+  #   super
+  # end
+
   def create
     omniauth = session[:omniauth]
 
@@ -28,13 +33,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def build_resource(*args)
     super
     omniauth = session[:omniauth]
-
-    if omniauth
-      @user.from_omniauth(omniauth)
-    else
-      @user.provider = 'local'
-    end
-
+    @user.from_omniauth(omniauth)
     @user
   end
 

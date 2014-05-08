@@ -39,23 +39,30 @@ module User::AuthDefinitions
 
 
     def from_omniauth(omniauth)
-      self.provider = omniauth['provider'] if self.provider.blank?
-      self.uid = omniauth['uid'] if self.uid.blank?
+      if omniauth
+        self.provider = omniauth.provider
+        self.uid = omniauth.uid
 
-      self.email = omniauth['info']['email'] if self.email.blank?
+        if omniauth.info
+          self.email = omniauth.info.email if omniauth.info.email
+          self.name = omniauth.info.name if omniauth.info.name
+          self.first_name = omniauth.info.first_name if omniauth.info.first_name
+          self.last_name = omniauth.info.last_name if omniauth.info.last_name
 
-      self.name = omniauth["info"]["name"] if self.name.blank?
+          self.nickname = omniauth.info.nickname if omniauth.info.nickname
+          self.nickname ||= omniauth.info.username if omniauth.info.username
+        end
 
-      self.first_name = omniauth["info"]["first_name"] if self.first_name.blank?
-      self.first_name = omniauth["info"]["name"] if self.first_name.blank?
+        if omniauth.extra
+          if omniauth.extra.raw_info
+            self.gender = omniauth.extra.raw_info.gender.to_a if omniauth.extra.raw_info.gender
+            self.birthday = DateTime.strptime(omniauth.extra.raw_info.birthday, "%m/%d/%Y") if omniauth.extra.raw_info.birthday
+          end
+        end
 
-      self.last_name = omniauth["info"]["last_name"] if self.last_name.blank?
-
-      self.nickname = omniauth["info"]["nickname"] if self.nickname.blank?
-      self.nickname = omniauth["info"]["username"] if self.nickname.blank?
-
-      self.genders_mask = omniauth["extra"]["raw_info"]["gender"].to_a if self.genders_mask.blank?
-      self.birthday = omniauth["extra"]["raw_info"]["birthday"].to_a if self.birthday.blank?
+      else
+        self.provider = 'local'
+      end
     end
 
   end
