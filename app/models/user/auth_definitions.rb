@@ -19,13 +19,13 @@ module User::AuthDefinitions
 
     # Password not required when using omniauth
     def password_required?
-      super && identities.empty?
+      super
     end
 
 
     # Confirmation not required when using omniauth
     def confirmation_required?
-      super && identities.empty?
+      super
     end
 
 
@@ -35,6 +35,27 @@ module User::AuthDefinitions
       else
         super
       end
+    end
+
+
+    def from_omniauth(omniauth)
+      self.provider = omniauth['provider'] if self.provider.blank?
+      self.uid = omniauth['uid'] if self.uid.blank?
+
+      self.email = omniauth['info']['email'] if self.email.blank?
+
+      self.name = omniauth["info"]["name"] if self.name.blank?
+
+      self.first_name = omniauth["info"]["first_name"] if self.first_name.blank?
+      self.first_name = omniauth["info"]["name"] if self.first_name.blank?
+
+      self.last_name = omniauth["info"]["last_name"] if self.last_name.blank?
+
+      self.nickname = omniauth["info"]["nickname"] if self.nickname.blank?
+      self.nickname = omniauth["info"]["username"] if self.nickname.blank?
+
+      self.genders_mask = omniauth["extra"]["raw_info"]["gender"].to_a if self.genders_mask.blank?
+      self.birthday = omniauth["extra"]["raw_info"]["birthday"].to_a if self.birthday.blank?
     end
 
   end

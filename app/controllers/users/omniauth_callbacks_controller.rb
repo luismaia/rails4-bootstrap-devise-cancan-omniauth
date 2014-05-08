@@ -33,11 +33,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   alias_method :facebook, :all
   alias_method :twitter, :all
   alias_method :google_oauth2, :all
+  alias_method :kerberos, :all
 
   protected
 
   def auth_hash
     #raise request.env["omniauth.auth"].to_yaml
+
+    puts '+'*100
+    puts '+'*100
+    puts '+'*100
+    puts request.env['omniauth.auth'].to_yaml
+    puts '+'*100
+    puts '+'*100
+    puts '+'*100
+
     request.env['omniauth.auth']
   end
 

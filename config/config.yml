@@ -5,10 +5,10 @@ defaults: &defaults
     - user
   default_role: user
   genders:
-    - Feminine
-    - Masculine
-    - Undefined
-  default_gender: Undefined
+    - female
+    - male
+    - 'other or decline to state'
+  default_gender: 'other or decline to state'
 
 development:
   <<: *defaults

@@ -6,10 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     omniauth = session[:omniauth]
 
     if omniauth
-      build_resource(sign_up_params)
-      identity = Identity.where(provider: omniauth['provider'], uid: omniauth['uid']).first
-      identity.user = identity.find_or_create_user(resource)
-      identity.save(validate: false)
+      user = build_resource
+      user.assign_attributes(sign_up_params)
+
+      identity = Identity.where(provider: omniauth[:provider], uid: omniauth[:uid]).first
+      identity.user = identity.find_or_create_user(user)
 
       session[:omniauth] = nil
 
@@ -23,26 +24,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+
   def build_resource(*args)
     super
-
     omniauth = session[:omniauth]
-    @user.provider = 'local'
 
     if omniauth
-      identity = Identity.where(provider: omniauth['provider'], uid: omniauth['uid']).first
-
-      #@user.apply_omniauth(session[:omniauth], person)
-      @user.email = identity.email unless identity.email.nil?
-      @user.first_name = identity.first_name unless identity.first_name.nil?
-      @user.last_name = identity.last_name unless identity.last_name.nil?
-      @user.provider = identity.provider unless identity.provider.nil?
-      @user.uid = identity.uid unless identity.uid.nil?
+      @user.from_omniauth(omniauth)
+    else
+      @user.provider = 'local'
     end
 
-    # Associate default role to LOCAL and to other Providers users
-    @user.set_def_role
-
+    @user
   end
 
 

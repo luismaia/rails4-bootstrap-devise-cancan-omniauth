@@ -26,6 +26,22 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  # GENDER
+  def set_gender(gender_name)
+    self.genders = get_gender(gender_name)
+  end
+
+  def get_gender(gender_name)
+    if gender_name.blank?
+      gender = [AppConfig.default_gender]
+    else
+      gender = gender_name.to_a
+    end
+    gender
+  end
+
+
+  # ROLE
   def set_def_role
     role = Role.find_by_flg_default(1)
     self.add_role role.name

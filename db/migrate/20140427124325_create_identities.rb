@@ -8,10 +8,13 @@ class CreateIdentities < ActiveRecord::Migration
       t.datetime :expires_at
 
       t.string :email
-      t.string :image
-      t.string :nickname
+      t.string :name
       t.string :first_name
       t.string :last_name
+      t.string :nickname
+      t.string :gender
+      t.string :image
+      t.date :birthday
 
       t.references :user
     end

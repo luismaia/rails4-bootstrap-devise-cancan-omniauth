@@ -6,10 +6,12 @@ class AddColumnsToUsers < ActiveRecord::Migration
     # Add New columns
     add_column :users, :provider, :string, default: "local"
     add_column :users, :uid, :string
-    add_column :users, :name, :string
 
+    add_column :users, :name, :string #full name
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
+    add_column :users, :nickname, :string
+    add_column :users, :birthday, :date
 
     add_column :users, :genders_mask, :integer
 
@@ -26,10 +28,12 @@ class AddColumnsToUsers < ActiveRecord::Migration
     # Remove New columns
     remove_column :users, :provider, :string
     remove_column :users, :uid, :string
-    remove_column :users, :name, :string
 
+    remove_column :users, :name, :string
     remove_column :users, :first_name, :string
     remove_column :users, :last_name, :string
+    remove_column :users, :nickname, :string
+    remove_column :users, :birthday, :date
 
     remove_column :users, :genders_mask, :integer
 
