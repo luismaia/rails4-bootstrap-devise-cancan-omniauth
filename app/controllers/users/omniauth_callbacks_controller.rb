@@ -11,6 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       if identity.email.nil? || identity.first_name.nil? || identity.last_name.nil?
         session[:omniauth] = omniauth.except('extra')
+        session[:omniauth_provider] = omniauth.provider
         redirect_to new_user_registration_url
       else
         current_user = User.find_by_email_and_provider(identity.email, identity.provider)

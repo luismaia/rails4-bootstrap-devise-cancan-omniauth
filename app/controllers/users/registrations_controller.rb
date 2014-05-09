@@ -2,10 +2,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   respond_to :html, :json
 
-  # def new
-  #   session[:omniauth] = nil
-  #   super
-  # end
+  def new
+    # Clean session[:omniauth] variable
+    # if the user logins and accepts provider access, but doesn't complete the registration
+    if session[:omniauth_provider].blank?
+      session[:omniauth] = nil
+    else
+      session[:omniauth_provider] = nil
+    end
+
+    super
+  end
 
   def create
     omniauth = session[:omniauth]
