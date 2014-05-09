@@ -230,6 +230,9 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, "1039066397729.apps.googleusercontent.com", "UZZXJS6ztpc4QMSAJHVynsjI",
                   {access_type: "offline", approval_prompt: ""}
 
+  config.omniauth :linkedin, "77pdtccc1bsdeb", "VXmCuo7SOiZFS85Z",
+                  scope: 'r_fullprofile r_emailaddress'
+
   config.omniauth :kerberos, #, :fields => [:email, :password], :callback_path => "/auth/kerberos/callback"
                   :title => 'DESY Registry'
 
