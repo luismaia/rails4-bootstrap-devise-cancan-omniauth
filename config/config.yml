@@ -1,14 +1,12 @@
 defaults: &defaults
-  roles:
-    - admin
-    - owner
-    - user
-  default_role: user
   genders:
     - female
     - male
     - 'other or decline to state'
   default_gender: 'other or decline to state'
+  omniauth_path_prefix: "/auth"
+  kerberos_callback_path: "/users/auth/kerberos/callback"
+  site_domain: "http://localhost:3000/"
 
 development:
   <<: *defaults

@@ -4,18 +4,25 @@ Tur::Application.routes.draw do
   end
 
   unauthenticated do
-    root to: "home#index"
+    root to: 'home#index'
   end
 
   devise_for :users, controllers: {
-      registrations: "users/registrations",
-      passwords: "users/passwords",
-      omniauth_callbacks: "users/omniauth_callbacks"
+      registrations: 'users/registrations',
+      passwords: 'users/passwords',
+      omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  # Needs this block to allow the integration of the Kerberos login form into the Devise::session Views
+  devise_scope :user do
+    match '/users/auth/:provider/callback', to: 'devise/sessions#create', via: :post, :as => :auth_callback
+  end
+
 
   resources :users
 
-  get "home/index"
+  get 'home/index'
+
   #resources :dashboard
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

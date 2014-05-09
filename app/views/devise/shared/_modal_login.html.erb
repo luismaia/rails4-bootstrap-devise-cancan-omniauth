@@ -1,0 +1,25 @@
+<div id="modal_login" class="modal" style="display: none;">
+
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&#215;</a>
+
+    <h3><%= t('model.messages.sign_in_kerberos_title') %></h3>
+  </div>
+
+  <%= simple_form_for '', {url: AppConfig.kerberos_callback_path} do |f| %>
+      <div class="modal-body row-fluid">
+        <div class="span6">
+          <%= render 'devise/shared/login_form_fields', f: f, identifier: :username %>
+        </div>
+        <div class="span6">
+          <%= image_tag "kerberos_128.jpg", :size => "128x128", :alt => "Kerberos" %>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <%= f.button :submit, "Sign In", :class => "btn-primary" %>
+        <a class="btn" data-dismiss="modal" href="#">Close</a>
+      </div>
+
+  <% end %>
+</div>

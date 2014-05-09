@@ -198,6 +198,9 @@ en:
       registryCreation: "Registry creation"
       undid: "Registry was successfully undid."
       redid: "Registry was successfully redid."
+      sign_in_kerberos_title: "Sign In with European-XFEL credentials"
+      sign_in_local_title: "Sign In with your account"
+      sign_in_title: "Sign In with one of your accounts"
 
       hint:
         dateHint: "date format: 1985/01/20"

@@ -53,6 +53,7 @@ gem 'cancan'
 gem 'rolify'
 #OMNIAUTH
 #gem "omniauth"
+gem "authbuttons-rails"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
