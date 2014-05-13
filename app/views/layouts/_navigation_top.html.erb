@@ -1,0 +1,45 @@
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to site_name, site_url, class: "navbar-brand" %>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <!--<ul class="nav navbar-nav pull-right">-->
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+            <% if current_user.has_role? :admin %>
+                <%= render 'layouts/menu_option', option_path: users_path, option_name: 'Admin' %>
+            <% end %>
+            <%= render 'layouts/menu_option', option_path: edit_user_registration_path, option_name: 'Edit account' %>
+            <%= render 'layouts/menu_option', option_path: destroy_user_session_path, option_name: 'Logout', option_method: 'delete' %>
+
+        <% else %>
+            <%= render 'layouts/menu_option', option_path: new_user_registration_path, option_name: 'Register' %>
+            <%= render 'layouts/menu_option', option_path: new_user_session_path, option_name: 'Login' %>
+        <% end %>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="socials"><!-- Place this tag where you want the +1 button to render -->
+              <g:plusone annotation="inline" width="150"></g:plusone>
+            </li>
+            <li class="socials">
+              <div class="fb-like" data-send="false" data-width="150" data-show-faces="true"></div>
+            </li>
+            <li class="socials"><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,18 +1,12 @@
-<div class="navbar navbar-fixed-bottom navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav">
-        <a class="brand" href="http://www.localhost:3000">Go Back To Home Page</a>
-        <li><a href="#">About</a></li>
-        <li class="divider-vertical"></li>
-        <li><a href="#">Use</a></li>
-        <li class="divider-vertical"></li>
-        <li><a href="http://uefacouncil.wordpress.com/contact-us/">Contact Us</a></li>
-        <li class="divider-vertical"></li>
-      </ul>
-      <ul class="nav pull-right">
-        <li class="brand">Designed by QED42</li>
-      </ul>
-    </div>
-  </div>
-</div>
+<footer>
+  <hr>
+  <p class="pull-right">
+    <%= link_to '<span class="glyphicon-class glyphicon glyphicon-chevron-up"></span> Back to top'.html_safe, '#Top' %>
+  </p>
+
+  <p>
+    &copy; <%= Time.now.year %> <%= site_name %>
+    &bull;
+    <%= link_to "About", about_path %></li>
+  </p>
+</footer>

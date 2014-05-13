@@ -1,16 +1,7 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'form-vertical'}) do |f| %>
-    <%= f.error_notification %>
-    <%= render 'users/form_shared_inputs', f: f, user: resource %>
+<%= render "shared/page_title", page_title: 'Edit ' + resource_name.to_s.humanize %>
+<%= render 'devise/registrations/form' %>
 
-    <% if current_user.password_required? %>
-        <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-        <%= f.input :password_confirmation, :required => false %>
-        <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
-    <% end %>
-    <%= f.button :submit, 'Update', :class => 'btn-primary' %>
-<% end %>
-<h3>Cancel my account</h3>
+
+<%= render "shared/page_title", page_title: 'Cancel my account' %>
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => {:confirm => "Are you sure?"}, :method => :delete %>
   .</p>
-

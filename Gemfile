@@ -60,13 +60,16 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-kerberos'
 
+# Static pages
+gem 'high_voltage'
 
 gem "simple_form", github: "plataformatec/simple_form"
 gem "nested_form"
 gem "hashugar", github: "alex-klepa/hashugar"
 
 #Twitter Bootstrap
-gem "bootstrap-sass", "~> 2.3.2.1"
+#gem "bootstrap-sass", "~> 2.3.2.1"
+gem 'bootstrap-sass' #, '~> 3.1.1.1'
 gem "font-awesome-sass-rails"
 
 gem 'mail'

@@ -1,0 +1,11 @@
+<li class="<%= 'active' if current_page?(option_path) %>">
+  <% option_method ||= nil %>
+
+  <% if option_method.blank? %>
+      <%= link_to option_name, option_path %>
+  <% else %>
+      <%#= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
+      <%= link_to option_name, option_path, method: option_method %>
+  <% end %>
+</li>
+

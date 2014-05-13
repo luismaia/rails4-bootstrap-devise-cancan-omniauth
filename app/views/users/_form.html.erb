@@ -1,10 +1,23 @@
-<%= simple_nested_form_for @user, :validate => true, :html => {:class => 'form-horizontal'} do |f| %>
+<% page_title ||= nil %>
 
-    <%= render "shared/error_messages", :target => @user %>
+<h2><%= page_title %></h2>
 
+<%= simple_form_for @user, as: 'user', validate: true, html: {class: 'form-horizontal'},
+                    wrapper: :horizontal_form,
+                    wrapper_mappings: {
+                            check_boxes: :horizontal_radio_and_checkboxes,
+                            radio_buttons: :horizontal_radio_and_checkboxes,
+                            file: :horizontal_file_input,
+                            boolean: :horizontal_boolean
+                    } do |f| %>
+
+    <%= f.error_notification %>
     <%= render 'users/form_shared_inputs', f: f, user: @user %>
 
-    <%= render 'shared/inputs/form_input_field_role_ids', f: f, user: @user %>
+
+    <% if current_user.has_role? :admin %>
+        <%= render 'shared/inputs/form_input_field_role_ids', f: f, user: @user %>
+    <% end %>
 
     <%= render "shared/buttons/form_page_buttons", cancel_path: users_path, back_path: @user, f: f %>
 

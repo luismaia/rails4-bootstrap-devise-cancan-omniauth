@@ -7,6 +7,10 @@ defaults: &defaults
   omniauth_path_prefix: "/auth"
   kerberos_callback_path: "/users/auth/kerberos/callback"
   site_domain: "http://localhost:3000/"
+  site_name: "Project Name"
+  author: "Luis Maia"
+  meta_description: "Add your website description here"
+  meta_keywords: "Add your keywords here"
 
 development:
   <<: *defaults

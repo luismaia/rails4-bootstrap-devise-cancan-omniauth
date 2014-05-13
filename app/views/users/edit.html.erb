@@ -1,15 +1,14 @@
 <%-
     model_class = User
-    pageContext = 'edit'
-    pageTitle = '.title'
-    pageModel = t('model.user')
+    page_context = :edit
+    title = nil #'.title'
+    override_model_name = nil #t('model.user')
+
+    page_title = get_page_title(title, page_context, override_model_name, model_class)
 -%>
 
 <%= render "shared/page_title",
-           :pageContext => pageContext,
-           :pageTitle => pageTitle,
-           :pageModel => pageModel,
-           :defaultModel => model_class.model_name.human
+           page_title: page_title
 %>
 
-<%= render :partial => 'form' %>
+<%= render partial: 'form' %>

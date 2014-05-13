@@ -1,8 +1,8 @@
 <% if identifier == :username %>
-    <%= f.input :username, label: t("model.username"), :autofocus => true %>
+    <%= f.input :username, label: t("model.username"), autofocus: true, input_html: {class: 'special'} %>
 <% else %>
-    <%= f.input :email, :autofocus => true %>
+    <%= f.input :email, autofocus: true, input_html: {class: 'special'} %>
 <% end %>
 
 <%= f.input :password %>
-<%= f.input :remember_me, :as => :boolean, :wrapper => :inline_checkbox if devise_mapping.rememberable? %>
+<%= f.input :remember_me, as: :boolean, inline_label: 'Remember me', label: false if devise_mapping.rememberable? %>

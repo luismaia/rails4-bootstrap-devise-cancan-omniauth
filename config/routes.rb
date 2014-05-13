@@ -1,10 +1,10 @@
 Tur::Application.routes.draw do
   authenticated :user do
-    root to: 'home#index', as: :authenticated_root
+    root to: 'high_voltage/pages#show', id: 'home', as: :authenticated_root
   end
 
   unauthenticated do
-    root to: 'home#index'
+    root to: 'high_voltage/pages#show', id: 'home'
   end
 
   devise_for :users, controllers: {
@@ -18,12 +18,12 @@ Tur::Application.routes.draw do
     match '/users/auth/:provider/callback', to: 'devise/sessions#create', via: :post, :as => :auth_callback
   end
 
+  # high_voltage
+  get '/home', to: redirect('/')
+  get '/about' => 'high_voltage/pages#show', id: 'about'
 
   resources :users
 
-  get 'home/index'
-
-  #resources :dashboard
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

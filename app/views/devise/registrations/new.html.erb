@@ -2,25 +2,13 @@
 
     <%= render 'devise/shared/sign_in_providers_list' %>
 
-    <h2>Sign up</h2>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, html: {class: 'form-horizontal'}) do |f| %>
-        <%= f.error_notification %>
-        <%= render 'users/form_shared_inputs', f: f, user: nil %>
-        <%= f.input :password, required: true %>
-        <%= f.input :password_confirmation, required: true %>
-
-        <%= f.button :submit, 'Sign up', class: 'btn-primary' %>
-    <% end %>
+    <%= render "shared/page_title", page_title: 'Sign up' %>
+    <%= render 'devise/registrations/form' %>
     <%= render "devise/shared/links" %>
 
 <% else %>
 
-    <h2>Complete your <%= resource_name.to_s.humanize %> information</h2>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, html: {class: 'form-horizontal'}) do |f| %>
-        <%= f.error_notification %>
-        <%= render 'users/form_shared_inputs', f: f, user: nil %>
-
-        <%= f.button :submit, 'Sign up', :class => 'btn-primary', id: "registerButtonId" %>
-    <% end %>
+    <%= render "shared/page_title", page_title: 'Complete your ' + resource_name.to_s.humanize + ' information' %>
+    <%= render 'devise/registrations/form' %>
 
 <% end %>

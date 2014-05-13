@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: d7306558665d38fe3a0c277ce263e99f635958de
+  revision: 9196efd2562573aa08037034051fc8c924083e10
   specs:
     simple_form (3.1.0.rc1)
       actionpack (~> 4.0)
@@ -44,7 +44,7 @@ GEM
     arel (5.0.1.20140414130214)
     authbuttons-rails (0.1.2)
     bcrypt (3.1.7)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
     cancan (1.6.10)
@@ -76,16 +76,17 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     hashie (2.1.1)
+    high_voltage (2.1.0)
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (2.0.6)
+    jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    jwt (0.1.11)
+    jwt (0.1.13)
       multi_json (>= 1.5)
     libv8 (3.16.14.3)
     mail (2.5.4)
@@ -94,7 +95,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.3)
-    multi_json (1.9.3)
+    multi_json (1.10.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.15)
@@ -219,13 +220,14 @@ PLATFORMS
 
 DEPENDENCIES
   authbuttons-rails
-  bootstrap-sass (~> 2.3.2.1)
+  bootstrap-sass
   cancan
   capybara
   coffee-rails (~> 4.0.0)
   devise
   font-awesome-sass-rails
   hashugar!
+  high_voltage
   jbuilder (~> 2.0)
   jquery-rails
   mail
