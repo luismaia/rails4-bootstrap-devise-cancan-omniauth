@@ -3,18 +3,14 @@ Tur::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #     :address              => "smtp-auth.desy.de",
-  #     :port                 => 587,
-  #     :user_name            => 'maial@win.desy.de',
-  #     :password             => 'xib#Porto#85',
-  #     :authentication       => 'plain',
-  #     :enable_starttls_auto => true  }
 
-
-  #config.action_mailer.smtp_settings = {
-  #    :address              => "smtp.desy.de",
-  #    :port                 => 25  }
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :user_name => 'email@gmail.com',
+      :password => 'password',
+      :authentication => 'plain',
+      :enable_starttls_auto => true}
 
 
   # In the development environment your application's code is reloaded on

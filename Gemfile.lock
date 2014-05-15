@@ -114,6 +114,9 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (1.6.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-google-oauth2 (0.2.4)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
@@ -234,6 +237,7 @@ DEPENDENCIES
   mysql2
   nested_form
   omniauth-facebook
+  omniauth-github
   omniauth-google-oauth2
   omniauth-kerberos
   omniauth-linkedin-oauth2

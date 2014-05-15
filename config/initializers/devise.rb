@@ -219,22 +219,22 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, '438031743001028', 'a1bf79f70fe85f156284c75b86844ad9',
+  config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  config.omniauth :facebook, 'APP_ID', 'APP_SECRET',
                   {scope: 'publish_stream,email',
                    client_options: {ssl: {ca_path: '/Users/luismaia/development/railsProjects/web_services/xauth/trunk/site'}}}
 
-  config.omniauth :twitter, 'gvwf4XEigKpI4dDZzQyA', 'cBJEiVamsfnhBWjVyC3Voduw5RH4NXxCcbnMuFYVRek',
+  config.omniauth :twitter, 'APP_ID', 'APP_SECRET',
                   scope: 'email,user_birthday,read_stream'
 
-  config.omniauth :google_oauth2, "1039066397729.apps.googleusercontent.com", "UZZXJS6ztpc4QMSAJHVynsjI",
+  config.omniauth :google_oauth2, "APP_ID", "APP_SECRET",
                   {access_type: "offline", approval_prompt: ""}
 
-  config.omniauth :linkedin, "77pdtccc1bsdeb", "VXmCuo7SOiZFS85Z",
+  config.omniauth :linkedin, "APP_ID", "APP_SECRET",
                   scope: 'r_fullprofile r_emailaddress'
 
-  config.omniauth :kerberos, #, fields: [:email, :password], callback_path: "users/auth/kerberos/callback"
-                  title: 'DESY Registry'
+  config.omniauth :kerberos, title: 'Local Registry'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

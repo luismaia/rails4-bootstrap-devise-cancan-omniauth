@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20140502103055) do
     t.string   "last_name"
     t.string   "nickname"
     t.date     "birthday"
-    t.integer  "genders_mask"
     t.string   "gender"
   end
 

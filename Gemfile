@@ -56,6 +56,7 @@ gem 'rolify'
 gem "authbuttons-rails"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
 gem "omniauth-google-oauth2"
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-kerberos'

@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.set_gender(gender)
-    self.gender = get_gender(gender)
+  def set_gender(gender)
+    self.gender = User.get_gender(gender)
   end
 
 
