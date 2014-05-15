@@ -26,18 +26,18 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+
   # GENDER
-  def set_gender(gender_a)
-    self.genders = get_gender(gender_a)
+  def self.get_gender(gender)
+    if AppConfig.genders.to_a.include? gender
+      gender
+    else
+      AppConfig.default_gender
+    end
   end
 
-  def get_gender(gender_a)
-    if gender_a.blank?
-      gender = [AppConfig.default_gender]
-    else
-      gender = gender_a
-    end
-    gender
+  def self.set_gender(gender)
+    self.gender = get_gender(gender)
   end
 
 

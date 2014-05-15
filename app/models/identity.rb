@@ -58,7 +58,7 @@ class Identity < ActiveRecord::Base
       self.user.provider    ||= self.provider
       self.user.birthday    ||= self.birthday
 
-      self.user.set_gender(self.user.genders)
+      self.user.set_gender(self.gender)
       self.user.set_def_role #Default role association
 
       self.user.skip_confirmation!
@@ -83,7 +83,7 @@ class Identity < ActiveRecord::Base
           uid: self.uid,
           birthday: self.birthday,
           provider: self.provider,
-          genders: [self.gender]
+          genders: User.get_gender(self.gender)
       )
       self.user.set_def_role #Default role association
       self.user.skip_confirmation!

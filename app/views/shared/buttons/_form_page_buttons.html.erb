@@ -1,13 +1,17 @@
-<div class="form-actions">
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
 
-  <%= f.button :submit, t("model.buttons.save"), {class: 'btn-primary'} %>
+    <%= f.button :submit, t("model.buttons.save"), {class: 'btn-primary'} %>
 
-  <%= f.button :submit, {class: 'btn-info', name: "redirection", value: t("model.buttons.saveAndAddAnother")} %>
+    <% if can? :create, model_class %>
+        <%= f.button :submit, {class: 'btn-info', name: "redirection", value: t("model.buttons.saveAndAddAnother")} %>
+    <% end %>
 
-  <% unless back_path.id.nil? %>
-      <%= link_to t('.back', :default => t("model.buttons.backToRegistry")), back_path, :class => 'btn btn-danger' %>
-  <% end %>
+    <% unless back_path.id.nil? %>
+        <%= link_to t('.back', :default => t("model.buttons.backToRegistry")), back_path, :class => 'btn btn-danger' %>
+    <% end %>
 
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), cancel_path, :class => 'btn btn-danger' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), cancel_path, :class => 'btn btn-danger' %>
 
+  </div>
 </div>

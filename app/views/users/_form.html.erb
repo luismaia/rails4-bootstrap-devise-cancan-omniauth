@@ -19,6 +19,6 @@
         <%= render 'shared/inputs/form_input_field_role_ids', f: f, user: @user %>
     <% end %>
 
-    <%= render "shared/buttons/form_page_buttons", cancel_path: users_path, back_path: @user, f: f %>
+    <%= render "shared/buttons/form_page_buttons", model_class: User, cancel_path: users_path, back_path: @user, f: f %>
 
 <% end %>

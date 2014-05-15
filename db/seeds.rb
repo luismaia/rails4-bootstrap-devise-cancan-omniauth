@@ -19,7 +19,7 @@ end
 
 puts 'SETTING UP DEFAULT Administrator User'
 admin = User.new(email: 'admin@localhost.com', first_name: 'Pratik', last_name: 'User',
-                 genders: ['Undefined'],
+                 gender: 'other or decline to state',
                  password: 'administrator', password_confirmation: 'administrator')
 admin.skip_confirmation!
 admin.save!

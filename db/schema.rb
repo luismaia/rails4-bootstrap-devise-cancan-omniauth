@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140502103055) do
     t.string   "nickname"
     t.date     "birthday"
     t.integer  "genders_mask"
+    t.string   "gender"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

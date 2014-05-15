@@ -13,7 +13,7 @@ class AddColumnsToUsers < ActiveRecord::Migration
     add_column :users, :nickname, :string
     add_column :users, :birthday, :date
 
-    add_column :users, :genders_mask, :integer
+    add_column :users, :gender, :string
 
     # Add unique index to email and provider tuple
     add_index :users, [:email, :provider], unique: true
@@ -35,7 +35,7 @@ class AddColumnsToUsers < ActiveRecord::Migration
     remove_column :users, :nickname, :string
     remove_column :users, :birthday, :date
 
-    remove_column :users, :genders_mask, :integer
+    remove_column :users, :gender, :string
 
     # Add unique index to email
     add_index :users, :email
