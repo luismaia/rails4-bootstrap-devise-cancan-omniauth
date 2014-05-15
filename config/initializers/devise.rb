@@ -223,7 +223,7 @@ Devise.setup do |config|
 
   config.omniauth :facebook, 'APP_ID', 'APP_SECRET',
                   {scope: 'publish_stream,email',
-                   client_options: {ssl: {ca_path: '/Users/luismaia/development/railsProjects/web_services/xauth/trunk/site'}}}
+                   client_options: {ssl: {ca_path: 'APP_PATH/site'}}}
 
   config.omniauth :twitter, 'APP_ID', 'APP_SECRET',
                   scope: 'email,user_birthday,read_stream'
