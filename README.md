@@ -2,14 +2,19 @@
 
 ## About this app
 This Rails 4.0 app uses Devise, CanCan, Rolify, OmniAuth and Bootstrap 3.
+
 This app base can be found at [https://github.com/pratik60/rails4-bootstrap-devise-cancan-omniauth](https://github.com/pratik60/rails4-bootstrap-devise-cancan-omniauth).
+The integration with bootstrap 3 was based on project [http://rvg.me/2013/11/adding-a-bootstrap-3-layout-to-a-rails-4-project/](http://rvg.me/2013/11/adding-a-bootstrap-3-layout-to-a-rails-4-project/).
+
 The most important changes in this fork are:
-*   Added Rolify (user management model has to use a RDBMS (i.e. Mysql)).
-*   Added more OmniAuth providers
-*   "Complete your user information" form, if the OmniAuth (callback) doesn't have all the app "mandatory" user fields
-*   Added Bootstrap 3
-*   Added high_voltage for static pages
-For the remain model, developers can choose to use Non-Relational DB's (i.e. mongo).
+
+*   Added Rolify gem and the Role model (user management model has to use a RDBMS (i.e. MySQL), however for the remain model, developers can choose to use a Non-Relational DB (i.e. mongoDB));
+*   Added more OmniAuth providers;
+*   "Complete your user information" form, if the OmniAuth (callback) doesn't have all the app "mandatory" user fields;
+*   Added Bootstrap 3;
+*   Added high_voltage for static pages.
+
+
 
 ## How to use
 1) Update App configurations on the following files:

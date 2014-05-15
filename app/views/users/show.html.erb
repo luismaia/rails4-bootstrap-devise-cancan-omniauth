@@ -4,6 +4,12 @@
     title = nil #'.title'
     override_model_name = nil #t('model.user') #model_class.model_name.human
 
+    new_path = nil
+    back_path = users_path
+    edit_path = edit_user_url(@user)
+    destroy_path = user_path(@user)
+    copy_path = nil
+
     page_title = get_page_title(title, page_context, override_model_name, model_class)
 -%>
 
@@ -23,3 +29,14 @@
     <p>Email: <%= @user.identity.email %></p>
     <p>Image: </p><%= image_tag @user.identity.image %>
 <% end %>
+
+
+
+<%= render "shared/buttons/show_page_buttons",
+           model_class: model_class,
+           current_registry: @user,
+           back_path: back_path,
+           new_path: new_path,
+           copy_path: copy_path,
+           edit_path: edit_path,
+           destroy_path: destroy_path %>
